@@ -39,5 +39,22 @@ namespace Mvc_FormCollection.Controllers
             Aluno aluno = alunoBLL.GetAlunos().Single(a => a.Id == id);
             return View(aluno);
         }
+
+        [HttpPost]
+        [ActionName("Edit")]
+        public ActionResult EditPost(int id)
+        {
+            AlunoBLL alunoBLL = new AlunoBLL();
+            Aluno aluno = alunoBLL.GetAlunos().Single(a => a.Id == id);
+            UpdateModel(aluno, null, null, excludeProperties: new[] { "Nome" });
+
+            if (ModelState.IsValid)
+            {
+                alunoBLL.AtualizarAluno(aluno);
+                return RedirectToAction("Index");
+            }
+
+            return View(aluno);
+        }
     }
 }

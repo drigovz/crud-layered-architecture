@@ -89,6 +89,53 @@ namespace BLL
             }
         }
 
+        public void AtualizarAluno(Aluno aluno)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand("AtualizarAluno", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
+                    SqlParameter paramId = new SqlParameter();
+                    paramId.ParameterName = "@Id";
+                    paramId.Value = aluno.Id;
+                    cmd.Parameters.Add(paramId);
+
+                    SqlParameter paramNome = new SqlParameter();
+                    paramNome.ParameterName = "@Nome";
+                    paramNome.Value = aluno.Nome;
+                    cmd.Parameters.Add(paramNome);
+
+                    SqlParameter paramEmail = new SqlParameter();
+                    paramEmail.ParameterName = "@Email";
+                    paramEmail.Value = aluno.Email;
+                    cmd.Parameters.Add(paramEmail);
+
+                    SqlParameter paramIdade = new SqlParameter();
+                    paramIdade.ParameterName = "@Idade";
+                    paramIdade.Value = aluno.Idade;
+                    cmd.Parameters.Add(paramIdade);
+
+                    SqlParameter paramDataInscricao = new SqlParameter();
+                    paramDataInscricao.ParameterName = "@DataInscricao";
+                    paramDataInscricao.Value = aluno.DataInscricao;
+                    cmd.Parameters.Add(paramDataInscricao);
+
+                    SqlParameter paramSexo = new SqlParameter();
+                    paramSexo.ParameterName = "@Sexo";
+                    paramSexo.Value = aluno.Sexo;
+                    cmd.Parameters.Add(paramSexo);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
