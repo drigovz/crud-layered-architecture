@@ -64,5 +64,12 @@ namespace Mvc_FormCollection.Controllers
             alunoBLL.DeletarAluno(id);
             return RedirectToAction("Index");
         }
+
+        public ActionResult Details(int id)
+        {
+            AlunoBLL alunoBLL = new AlunoBLL();
+            Aluno aluno = alunoBLL.GetAlunos().Single(a => a.Id == id);
+            return View(aluno);
+        }
     }
 }
