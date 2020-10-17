@@ -10,5 +10,7 @@ namespace BLL
         public int Idade { get; set; }
         public DateTime DataInscricao { get; set; }
         public string Sexo { get; set; }
+        public string Foto { get; set; }
+        public string Texto { get; set; }
     }
 }

@@ -88,6 +88,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Fotos\dylan.jpg" />
+    <Content Include="Content\Fotos\gregg.jpg" />
+    <Content Include="Content\Fotos\janis.jpg" />
+    <Content Include="Content\Fotos\macoratti.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>

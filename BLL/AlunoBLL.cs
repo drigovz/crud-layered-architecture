@@ -34,6 +34,8 @@ namespace BLL
                         aluno.Idade = Convert.ToInt32(rdr["Idade"]);
                         aluno.DataInscricao = Convert.ToDateTime(rdr["DataInscricao"]);
                         aluno.Sexo = rdr["Sexo"].ToString();
+                        aluno.Foto = rdr["Foto"].ToString();
+                        aluno.Texto = rdr["Texto"].ToString();
                         alunos.Add(aluno);
                     }
                 }
@@ -78,6 +80,16 @@ namespace BLL
                     paramSexo.ParameterName = "@Sexo";
                     paramSexo.Value = aluno.Sexo;
                     cmd.Parameters.Add(paramSexo);
+
+                    SqlParameter paramFoto = new SqlParameter();
+                    paramFoto.ParameterName = "@Foto";
+                    paramFoto.Value = aluno.Foto;
+                    cmd.Parameters.Add(paramFoto);
+
+                    SqlParameter paramTexto = new SqlParameter();
+                    paramTexto.ParameterName = "@Texto";
+                    paramTexto.Value = aluno.Texto;
+                    cmd.Parameters.Add(paramTexto);
 
                     con.Open();
                     cmd.ExecuteNonQuery();
@@ -127,6 +139,16 @@ namespace BLL
                     paramSexo.ParameterName = "@Sexo";
                     paramSexo.Value = aluno.Sexo;
                     cmd.Parameters.Add(paramSexo);
+
+                    SqlParameter paramFoto = new SqlParameter();
+                    paramFoto.ParameterName = "@Foto";
+                    paramFoto.Value = aluno.Foto;
+                    cmd.Parameters.Add(paramFoto);
+
+                    SqlParameter paramTexto = new SqlParameter();
+                    paramTexto.ParameterName = "@Texto";
+                    paramTexto.Value = aluno.Texto;
+                    cmd.Parameters.Add(paramTexto);
 
                     con.Open();
                     cmd.ExecuteNonQuery();
