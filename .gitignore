@@ -27,7 +27,7 @@ bld/
 [Oo]bj/
 [Ll]og/
 
-Content/Fotos/*.*
+!/Content/Fotos/*.*
 
 # Visual Studio 2015 cache/options directory
 .vs/

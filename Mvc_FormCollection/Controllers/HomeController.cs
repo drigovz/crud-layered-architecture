@@ -7,11 +7,13 @@ namespace Mvc_FormCollection.Controllers
 {
     public class HomeController : Controller
     {
+        AlunoBLL alunoBLL = new AlunoBLL();
+        Aluno aluno = new Aluno();
+        List<Aluno> alunos = new List<Aluno>();
+
         public ActionResult Index()
         {
-            AlunoBLL _aluno = new AlunoBLL();
-            List<Aluno> alunos = _aluno.GetAlunos().ToList();
-
+            alunos = alunoBLL.GetAlunos().ToList();
             return View(alunos);
         }
 
@@ -25,8 +27,7 @@ namespace Mvc_FormCollection.Controllers
         {
             if (ModelState.IsValid)
             {
-                AlunoBLL alunoBll = new AlunoBLL();
-                alunoBll.IncluirAluno(aluno);
+                alunoBLL.IncluirAluno(aluno);
                 return RedirectToAction("Index");
             }
 
@@ -35,8 +36,7 @@ namespace Mvc_FormCollection.Controllers
 
         public ActionResult Edit(int id)
         {
-            AlunoBLL alunoBLL = new AlunoBLL();
-            Aluno aluno = alunoBLL.GetAlunos().Single(a => a.Id == id);
+            aluno = alunoBLL.GetAlunos().Single(a => a.Id == id);
             return View(aluno);
         }
 
@@ -44,8 +44,7 @@ namespace Mvc_FormCollection.Controllers
         [ActionName("Edit")]
         public ActionResult EditPost(int id)
         {
-            AlunoBLL alunoBLL = new AlunoBLL();
-            Aluno aluno = alunoBLL.GetAlunos().Single(a => a.Id == id);
+            aluno = alunoBLL.GetAlunos().Single(a => a.Id == id);
             UpdateModel(aluno, null, null, excludeProperties: new[] { "Nome" });
 
             if (ModelState.IsValid)
@@ -60,23 +59,18 @@ namespace Mvc_FormCollection.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            AlunoBLL alunoBLL = new AlunoBLL();
             alunoBLL.DeletarAluno(id);
             return RedirectToAction("Index");
         }
 
         public ActionResult Details(int id)
         {
-            AlunoBLL alunoBLL = new AlunoBLL();
-            Aluno aluno = alunoBLL.GetAlunos().Single(a => a.Id == id);
+            aluno = alunoBLL.GetAlunos().Single(a => a.Id == id);
             return View(aluno);
         }
 
         public ActionResult Procurar(string procurarPor, string criterio)
         {
-            AlunoBLL alunoBLL = new AlunoBLL();
-            Aluno aluno = new Aluno();
-
             if (procurarPor == "Email")
             {
                 aluno = alunoBLL.GetAlunos().SingleOrDefault(a => a.Email == criterio || criterio == null);
