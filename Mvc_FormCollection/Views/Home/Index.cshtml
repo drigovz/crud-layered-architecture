@@ -9,8 +9,22 @@
 </head>
 <body>
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Adicionar aluno", "Create")
     </p>
+
+    @using (Html.BeginForm("Procurar", "Home", FormMethod.Get))
+    {
+        <fieldset>
+            <legend>Procurar por:</legend>
+            @Html.RadioButton("ProcurarPor", "Nome", true)<text>Nome</text>
+            @Html.RadioButton("ProcurarPor", "Email")<text>Email</text>
+
+            @Html.TextBox("criterio")
+            <input type="submit" value="Procurar" />
+        </fieldset>
+    }
+    <br />
+
     <table class="table" border="1">
         <tr>
             <th>

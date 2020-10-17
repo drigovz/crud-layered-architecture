@@ -71,5 +71,22 @@ namespace Mvc_FormCollection.Controllers
             Aluno aluno = alunoBLL.GetAlunos().Single(a => a.Id == id);
             return View(aluno);
         }
+
+        public ActionResult Procurar(string procurarPor, string criterio)
+        {
+            AlunoBLL alunoBLL = new AlunoBLL();
+            Aluno aluno = new Aluno();
+
+            if (procurarPor == "Email")
+            {
+                aluno = alunoBLL.GetAlunos().SingleOrDefault(a => a.Email == criterio || criterio == null);
+                return View(aluno);
+            }
+            else
+            {
+                aluno = alunoBLL.GetAlunos().SingleOrDefault(a => a.Nome == criterio || criterio == null);
+                return View(aluno);
+            }
+        }
     }
 }
