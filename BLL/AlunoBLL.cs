@@ -137,5 +137,30 @@ namespace BLL
                 throw;
             }
         }
+
+        public void DeletarAluno(int id)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand("DeletarAluno", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlParameter paramId = new SqlParameter();
+                    paramId.ParameterName = "@Id";
+                    paramId.Value = id;
+                    cmd.Parameters.Add(paramId);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch
+            {
+
+                throw;
+            }
+        }
     }
 }

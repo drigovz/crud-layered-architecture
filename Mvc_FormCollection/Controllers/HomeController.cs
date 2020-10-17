@@ -56,5 +56,13 @@ namespace Mvc_FormCollection.Controllers
 
             return View(aluno);
         }
+
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            AlunoBLL alunoBLL = new AlunoBLL();
+            alunoBLL.DeletarAluno(id);
+            return RedirectToAction("Index");
+        }
     }
 }
